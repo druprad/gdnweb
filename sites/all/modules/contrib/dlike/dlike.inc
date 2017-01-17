@@ -4,7 +4,7 @@
 
 /**
  * @file
- * This files contains all the include functions.
+ * This file contains all the include functions.
  */
 
 /**
@@ -19,16 +19,13 @@ function dlike_get_users($flag_type, $content_id, $flag_name) {
  * Get list of names of all the users who flagged particular content.
  */
 function dlike_user_list($flag_type, $content_id, $flag_name) {
+  $flaggers = flag_get_entity_flags($flag_type, $content_id,$flag_name);
   $output = '';
-  $i = 0;
-  $flaggers = array();
-  $flaggers = dlike_get_users($flag_type, $content_id, $flag_name);
-  $output .= "<div class='dlike'";
+  $output .= "<div class='dlike'>";
   $output .= '<h2>' . variable_get('dlike-modal-window-title-' . $flag_name, NULL) . '</h2>';
-    while ($flaggers[$i]) {
-      $output .= '<div class="dlike-user-row">' . views_embed_view('dlike_user_view', 'default', array($flaggers[$i])) . '</div>';
-      $i++;
-    }
+  foreach ($flaggers as $flagger) {
+    $output .= '<div class="dlike-user-row">' . views_embed_view('dlike_user_view', 'default', $flagger->uid) . '</div>';
+  }
   $output .= "</div>";
   print $output;
 }

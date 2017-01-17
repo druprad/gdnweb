@@ -92,24 +92,12 @@ function dlike_form_data(&$form, $form_state) {
 }
 
 /**
- * Implementation of hook_node_view().
+ * Implements hook_entity_view().
  */
-function dlike_node_view($node, $view_mode) {
-  $links = dlike_flag_link('node', $node, $view_mode == 'teaser');
-  $node->content['links']['flag'] = array(
+function dlike_entity_view($entity, $type, $view_mode, $langcode) {
+  $links = dlike_flag_link($type, $entity, $view_mode);
+  $entity->content['links']['flag'] = array(
     '#theme' => 'links__node__flag',
-    '#links' => $links,
-    '#attributes' => array('class' => array('links', 'inline')),
-  ); 
-}
-
-/**
- * Implementation of hook_comment_view().
- */
-function dlike_comment_view($comment) {
-  $links = dlike_flag_link('comment', $comment);
-  $comment->content['links']['flag'] = array(
-    '#theme' => 'links',
     '#links' => $links,
     '#attributes' => array('class' => array('links', 'inline')),
   );
@@ -119,38 +107,52 @@ function dlike_comment_view($comment) {
  * This function is part of flag.module file.
  * This function is overridden here.
  */
-function dlike_flag_link($type, $object = NULL, $teaser = FALSE) {
-
-  if (!isset($object) || !flag_fetch_definition($type)) {
-    return;
-  }
-  global $user;
-
-  // Get all possible flags for this content-type.
+function dlike_flag_link($type, $object = NULL, $view_mode) {
+  // Get all possible flags for this entity type.
   $flags = flag_get_flags($type);
 
   foreach ($flags as $flag) {
-    $content_id = $flag->get_content_id($object);
-
-    if (!$flag->uses_hook_link($teaser)) {
-      // Flag is not configured to show its link here.
+    // Check if the flag outputs on entity view.
+    if (!($flag->show_as_field || $flag->shows_in_entity_links($view_mode))) {
+      // Flag is not configured to output on entity view, so skip it to save on
+      // calls to access checks.
       continue;
     }
-    if (!$flag->access($content_id) && (!$flag->is_flagged($content_id) || !$flag->access($content_id, 'flag'))) {
+
+    $entity_id = $flag->get_entity_id($object);
+    // For a new, unsaved entity, make a dummy entity ID so that the flag
+    // handler can remember the entity. This allows access to the flag to be
+    // correctly handled in node and comment preview.
+    if (is_null($entity_id)) {
+      $entity_id = 'new';
+    }
+    $flag->remember_entity($entity_id, $object);
+
+    if (!$flag->access($entity_id) && (!$flag->is_flagged($entity_id) || !$flag->access($entity_id, 'flag'))) {
       // User has no permission to use this flag or flag does not apply to this
-      // content. The link is not skipped if the user has "flag" access but
+      // entity. The link is not skipped if the user has "flag" access but
       // not "unflag" access (this way the unflag denied message is shown).
       continue;
     }
     
-    $dlike_append = dlike_append($type, $flag->get_content_id($object), $flag->name);
+    // We're good to go. Output the flag in the appropriate manner(s).
+    $dlike_append = dlike_append($type, $entity_id, $flag->name);
+    // The old-style entity links output.
+    if ($flag->shows_in_entity_links($view_mode)) {
+      // The flag links are actually fully rendered theme functions.
+      // The HTML attribute is set to TRUE to allow whatever the themer desires.
+      $links['flag-' . $flag->name] = array(
+        'title' => $flag->theme($flag->is_flagged($entity_id) ? 'unflag' : 'flag', $entity_id) . $dlike_append,
+        'html' => TRUE,
+      );
+    }
 
-    // The flag links are actually fully rendered theme functions.
-    // The HTML attribute is set to TRUE to allow whatever the themer desires.
-    $links['flag-' . $flag->name] = array(
-      'title' => $flag->theme($flag->is_flagged($content_id) ? 'unflag' : 'flag', $content_id) . $dlike_append,
-      'html' => TRUE,
-    );
+    // The pseudofield output.
+    if ($flag->show_as_field) {
+      $entity->content['flag_' . $flag->name] = array(
+       '#markup' => $flag->theme($flag->is_flagged($entity_id) ? 'unflag' : 'flag', $entity_id, array('needs_wrapping_element' => FALSE)) . $dlike_append,
+      );
+    }
   }
 
   if (isset($links)) {

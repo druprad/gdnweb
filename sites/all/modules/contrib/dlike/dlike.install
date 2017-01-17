@@ -12,7 +12,12 @@
  * Sets module weight.
  */
 function dlike_enable() {
-  $flag_weight = db_query('SELECT weight FROM system WHERE name = :flag', array(':flag' => 'flag'))->fetchField();
+  $flag_weight = db_select('system', 's')
+    ->fields('s', array('weight'))
+    ->condition('name', 'flag')
+    ->execute()
+    ->fetchField();
+
   db_update('system')
     ->fields(array('weight' => $flag_weight + 1))
     ->condition('name', basename(__FILE__, '.install'))
