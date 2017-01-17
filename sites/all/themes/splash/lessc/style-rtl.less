@@ -1,0 +1,115 @@
+body.rtl{
+
+/*List style in RTL 
+============================================*/
+.list-1 li:after, .list-2 li:after, .list-3 li:after, .list-4 li:after {
+    content: "";
+    font-family: "FontAwesome";
+    margin: 0 0 0 8px;
+    position: relative;
+    color: #5F8CB4;
+}
+.list-1 li:after {
+    content: "";
+}
+.list-2 li:after {
+    content: "\f105";
+}
+.list-3 li:after {
+    content: "";
+}
+.list-4 li:after {
+    content: "";
+}
+
+.headline{
+    padding-right: 0;
+}
+.brd-headling{
+    float: right;
+}
+.skill-bar .bar-wrap strong{
+    left: 0;
+    right: auto;
+}
+.tline-row-r {
+	margin: 0 497px 0 0;
+}
+.dexp_tab_wrapper ul.nav-tabs{
+    padding-right: 0;
+    li{
+        float: right;
+        margin-right: 0;
+        margin-left: 5px;
+    }
+}
+.alert{
+    .close{
+        float: left;
+    }
+}
+.dexp-shortcodes-box{
+    &.box-left{
+        .box-icon{
+            float: right;
+        }
+        .box-title, .box-content{
+            margin-left: 0;
+            margin-right: 45px;
+        }
+    }
+    &.box-top-left {
+        .box-icon{
+            text-align: right;
+        }
+    }
+}
+.table th{
+    text-align: right;
+}
+.flickr_badge_image {
+    float: right;
+}
+.panel-group .panel .panel-heading .panel-title a i{
+    padding-right: 0;
+    padding-left: 5px;
+}
+.post-content{
+    text-align: right;
+}
+.title-left h3:before{
+    left: auto;
+    right: 0;
+}
+.popular-post{
+    .icon-overlay{
+        float: right;
+    }
+    .meta{
+        margin-left: 0;
+        margin-right: 85px;
+    }
+}
+.tags ul li{
+    float: right;
+}
+.title-wrapper .title-left:before{
+    right: 0;
+    left: auto;
+}
+ul.arrow li:before, ul.circled li:before{
+    margin-right: 0;
+    margin-left: 10px;
+}
+#section-top {
+    #block-views-simple-shopping-cart-block,#block-locale-language,#block-system-user-menu,#block-dexp-popup-login-bootstrap-login {
+        float:left;
+    }
+    #block-views-simple-shopping-cart-block {
+        border-left:none;
+        border-right: 1px solid #eceef0;
+    }
+}
+
+/*End*/
+}

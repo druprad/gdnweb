@@ -249,7 +249,7 @@ $databases = array (
   array (
     'default' => 
     array (
-      'database' => 'gdn',
+      'database' => 'gdnweb',
       'username' => 'root',
       'password' => '',
       'host' => 'localhost',
@@ -290,7 +290,7 @@ $update_free_access = FALSE;
  *   $drupal_hash_salt = file_get_contents('/home/example/salt.txt');
  *
  */
-$drupal_hash_salt = 'FmEmaVlJxJXoaABuekG6W9RklW4wRJEPGnKnWwul_Ek';
+$drupal_hash_salt = 'bmuFCl5LD1j-HuZ-BBU9SIsg-vDylU7ZYcRclmMpguw';
 
 /**
  * Base URL (optional).
