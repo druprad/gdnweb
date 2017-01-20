@@ -10,9 +10,9 @@
 
     <figure>
     <a href="<?php print drupal_lookup_path('alias',"node/".$node->nid);?>">
-        <div class="text-overlay"> 
+        <!-- <div class="text-overlay"> 
            <div class="info"><span class="btn btn-white">Read More</span></div>
-         </div>
+         </div> -->
         <div class="field-item <?php print $delta % 2 ? 'odd' : 'even'; ?>"<?php print $item_attributes[$delta]; ?>><?php print render($item); ?></div>
     </a>
   </figure> 
