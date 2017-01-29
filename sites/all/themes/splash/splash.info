@@ -37,6 +37,7 @@ stylesheets[all][] = assets/css/fontello.css
 stylesheets[all][] = assets/css/gizmo.css
 stylesheets[all][] = assets/css/picons.css
 stylesheets[all][] = assets/css/jquery.fancybox.css
+stylesheets[all][] = assets/custom.css
 
 lessc[] = lessc/mixin.less
 lessc[] = lessc/general.less

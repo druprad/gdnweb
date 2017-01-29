@@ -372,28 +372,28 @@ body.boxed .dexp-body-inner {
   background: #FFF;
 }
 body.boxed.bg1 {
-  background: url("http://gdn.localhost/sites/all/themes/splash/assets/images/bg/1.png") repeat scroll 0 0 rgba(0,0,0,0);
+  background: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/bg/1.png") repeat scroll 0 0 rgba(0,0,0,0);
 }
 body.boxed.bg2 {
-  background: url("http://gdn.localhost/sites/all/themes/splash/assets/images/bg/2.png") repeat scroll 0 0 rgba(0,0,0,0);
+  background: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/bg/2.png") repeat scroll 0 0 rgba(0,0,0,0);
 }
 body.boxed.bg3 {
-  background: url("http://gdn.localhost/sites/all/themes/splash/assets/images/bg/3.png") repeat scroll 0 0 rgba(0,0,0,0);
+  background: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/bg/3.png") repeat scroll 0 0 rgba(0,0,0,0);
 }
 body.boxed.bg4 {
-  background: url("http://gdn.localhost/sites/all/themes/splash/assets/images/bg/4.png") repeat scroll 0 0 rgba(0,0,0,0);
+  background: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/bg/4.png") repeat scroll 0 0 rgba(0,0,0,0);
 }
 body.boxed.bg5 {
-  background: url("http://gdn.localhost/sites/all/themes/splash/assets/images/bg/5.png") repeat scroll 0 0 rgba(0,0,0,0);
+  background: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/bg/5.png") repeat scroll 0 0 rgba(0,0,0,0);
 }
 body.boxed.bg6 {
-  background: url("http://gdn.localhost/sites/all/themes/splash/assets/images/bg/6.png") repeat scroll 0 0 rgba(0,0,0,0);
+  background: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/bg/6.png") repeat scroll 0 0 rgba(0,0,0,0);
 }
 body.boxed.bg7 {
-  background: url("http://gdn.localhost/sites/all/themes/splash/assets/images/bg/7.png") repeat scroll 0 0 rgba(0,0,0,0);
+  background: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/bg/7.png") repeat scroll 0 0 rgba(0,0,0,0);
 }
 body.boxed.bg8 {
-  background: url("http://gdn.localhost/sites/all/themes/splash/assets/images/bg/8.png");
+  background: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/bg/8.png");
 }
 body:not(.header-color) #section-top,
 body:not(.header-dark) #section-top {
@@ -433,19 +433,19 @@ body:not(.header-dark) #section-top {
   padding: 0 5px;
 }
 body.ltr #section-bottom {
-  background-image: url("http://gdn.localhost/sites/all/themes/splash/assets/images/bg-footer.png");
+  background-image: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/bg-footer.png");
   background-repeat: repeat-y;
   background-color: #f6f6f6;
   background-size: 100%;
 }
 body.ltr #section-bottom .region-bottom-first {
-  background: #000000;
+  background: #289fcd;
 }
 body.ltr #section-bottom .container {
   background-color: #f6f6f6;
 }
 body.rtl #section-bottom {
-  background-image: url("http://gdn.localhost/sites/all/themes/splash/assets/images/bg-footer-rtl.png");
+  background-image: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/bg-footer-rtl.png");
   background-repeat: repeat-y;
   background-color: #f6f6f6;
   background-size: 100%;
@@ -1771,7 +1771,7 @@ table.checkout-review .pane-data-full {
 }
 table.cart .delete-line-item {
   text-indent: -9999px;
-  background: url(http://gdn.localhost/sites/all/themes/splash/assets/images/close.png) 0% 0%;
+  background: url(http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/close.png) 0% 0%;
   width: 15px;
   height: 14px;
 }
@@ -4496,31 +4496,31 @@ div.dexp_carousel:hover .left span {
   border-radius: 2px;
 }
 #block-dexp-quicksettings-dexp-quicksettings span.bg1 {
-  background: url("http://gdn.localhost/sites/all/themes/splash/assets/images/bg/1.png");
+  background: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/bg/1.png");
 }
 #block-dexp-quicksettings-dexp-quicksettings span.bg2 {
-  background: url("http://gdn.localhost/sites/all/themes/splash/assets/images/bg/2.png");
+  background: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/bg/2.png");
 }
 #block-dexp-quicksettings-dexp-quicksettings span.bg3 {
-  background: url("http://gdn.localhost/sites/all/themes/splash/assets/images/bg/3.png");
+  background: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/bg/3.png");
 }
 #block-dexp-quicksettings-dexp-quicksettings span.bg4 {
-  background: url("http://gdn.localhost/sites/all/themes/splash/assets/images/bg/4.png");
+  background: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/bg/4.png");
 }
 #block-dexp-quicksettings-dexp-quicksettings span.bg5 {
-  background: url("http://gdn.localhost/sites/all/themes/splash/assets/images/bg/5.png");
+  background: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/bg/5.png");
 }
 #block-dexp-quicksettings-dexp-quicksettings span.bg6 {
-  background: url("http://gdn.localhost/sites/all/themes/splash/assets/images/bg/6.png");
+  background: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/bg/6.png");
 }
 #block-dexp-quicksettings-dexp-quicksettings span.bg7 {
-  background: url("http://gdn.localhost/sites/all/themes/splash/assets/images/bg/7.png");
+  background: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/bg/7.png");
 }
 #block-dexp-quicksettings-dexp-quicksettings span.bg8 {
-  background: url("http://gdn.localhost/sites/all/themes/splash/assets/images/bg/8.png");
+  background: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/bg/8.png");
 }
 #block-dexp-quicksettings-dexp-quicksettings .quicksettings_toggle {
-  background: url("http://gdn.localhost/sites/all/themes/splash/assets/images/switcher.png") no-repeat scroll 10px center #303030;
+  background: url("http://ec2-54-158-15-145.compute-1.amazonaws.com/sites/all/themes/splash/assets/images/switcher.png") no-repeat scroll 10px center #303030;
   display: block;
   height: 44px;
   position: absolute;
