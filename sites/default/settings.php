@@ -249,7 +249,7 @@ $databases = array (
   array (
     'default' => 
     array (
-      'database' => 'gdnweb_theme',
+      'database' => 'gdnweb',
       'username' => 'root',
       'password' => '',
       'host' => 'localhost',
