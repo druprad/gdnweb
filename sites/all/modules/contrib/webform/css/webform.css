@@ -78,3 +78,5 @@ html.js input.webform-calendar {
   top: 10px;
   margin: 0 -10em;
 }
+
+div.wfm-item div.form-managed-file input[type="submit"] { margin-top:10px;}
