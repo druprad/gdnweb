@@ -1,0 +1,69 @@
+<?php
+
+/**
+ * Implements hook_form_alter().
+ */
+function blog_support_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id === 'user_register' || $form_id === 'user_profile_form') {
+    $form['#submit'][] = 'blog_support_user_register_submit';
+  }
+}
+ /**
+  * Implementation of hook_form_submit().
+  */
+ function blog_support_user_register_submit($form, $form_state) {
+  $uid = $form_state['values']['uid'];
+  $display_menu = ($form_state['values']['field_display_menu']['und'][0]['value'] === 1) ? 0 : 1;
+  $menu_title = $form_state['values']['field_display_name']['und'][0]['value'];
+  $menu_path = 'user/' . $uid;
+  $mlid = db_query("SELECT mlid FROM {menu_links} WHERE link_path=:link_path AND menu_name=:menu_name",
+    array(
+      ':link_path'  => $menu_path,
+      ':menu_name'  => 'main-menu',
+    )
+  )
+  ->fetchField();
+  if (is_numeric($mlid)) {
+    $link = menu_link_load($mlid);
+    $link['title'] = $menu_title;
+    $link['plid'] = 1991;
+    $link['hidden'] = $display_menu;
+  }
+  else {
+    $link = array();
+    $link['menu_name'] = "main-menu";
+    $link['link_title'] = $menu_title;
+    $link['link_path'] = $menu_path;
+    $link['description'] = "";
+    $link['plid'] = 1991;
+    $link['hidden'] = $display_menu;
+    $link['language']  = 'un';
+  }
+  $mlid = menu_link_save($link);
+  sort_menu_items('main-menu', 1991);
+}
+
+function sort_menu_items($menu_name, $plid) {
+  $menutree = menu_tree($menu_name);
+  foreach ($menutree[$plid]['#below'] as $key => $value) {
+    if (is_numeric($key)) {
+      $myarray[$key] = $value['#title'];
+    }
+  }
+  asort($myarray);
+  $cnt = 0;
+  foreach ($myarray as $key => $value) {
+    $link = menu_link_load($key);
+    $link['weight'] = $cnt++;
+    $mlid = menu_link_save($link);
+  }
+}
+/**
+* Implements HOOK_preprocess_user_profile()
+* Adds theme suggestions for the user view mode teaser
+*/
+function blog_support_preprocess_user_profile(&$vars) {
+  if ($vars['elements']['#view_mode'] == 'full') {
+    $vars['theme_hook_suggestions'][] = 'user_profile__authorlist';
+  }
+}

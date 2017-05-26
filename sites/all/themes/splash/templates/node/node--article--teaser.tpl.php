@@ -91,10 +91,7 @@
         <ul>
             <li><span class="date"><?php print date('d F Y', $created);?></span></li>
             <li><span>Post by <?php print strip_tags($name);?></span></li>
-            <?php if (isset($blog_categories)):?>
-				<li><span class="category"> <?php print $blog_categories;?></span> </li>
-			<?php endif;?>
-		<!-- <li><span class="comments"><?php //print $comment_count;?> Comments</span></li> -->
+            <li><span class="comments"><?php print $comment_count;?> Comments</span></li>
         </ul>
     </div>
     <h6 class="post-title">

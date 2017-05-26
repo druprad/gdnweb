@@ -1,0 +1,4 @@
+name = Blog Support Module
+description = "Custom module for blog support"
+core = 7.x
+package = Custom

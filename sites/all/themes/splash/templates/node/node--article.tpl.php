@@ -83,6 +83,7 @@
 
     <div class="media_element">
       <?php print render($content['field_media']);?>
+      <?php print $node->field_photo_credit['und'][0]['value']; ?>
     </div>
 
     <section class="post-content">
@@ -100,8 +101,8 @@
           <?php print render($content['body']);?>
         </div>
         <?php
-          $block = module_invoke('block', 'block_view', '45');
-          print render($block['content']);
+          //$block = module_invoke('block', 'block_view', '45');
+          //print render($block['content']);
         ?>
     </section>
 </div>
