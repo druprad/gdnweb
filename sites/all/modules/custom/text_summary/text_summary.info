@@ -1,0 +1,4 @@
+name = Text Summary Options
+description = Custom code for Summary management
+core = 7.x
+package = Custom

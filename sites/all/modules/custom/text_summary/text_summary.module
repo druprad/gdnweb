@@ -1,0 +1,65 @@
+<?php
+function text_summary_form_field_ui_field_edit_form_alter(&$form, $form_state) {
+  if (isset($form['#field']['type']) && $form['#field']['type'] == 'text_with_summary') {
+    $instance = $form['#instance'];
+    
+    $form['instance']['settings']['summary_is_required'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Summary is required'),
+      '#default_value' => isset($instance['settings']['summary_is_required']) ? $instance['settings']['summary_is_required'] : '0',
+      '#description' => t('When checked the summary field will be a mandatory field.'),
+    );
+    $form['instance']['settings']['summary_always_visible'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Summary always visible'),
+      '#default_value' => isset($instance['settings']['summary_always_visible']) ? $instance['settings']['summary_always_visible'] : '0',
+      '#description' => t('When checked the summary field will be made visible by default.'),
+    );
+    $form['instance']['settings']['summary_max_words'] = array(
+      '#type' => 'textfield',
+      //'#title' => t('Maximum words'),
+      '#title' => t('Maximum Summary Length'),
+      '#default_value' => isset($instance['settings']['summary_max_words']) ? $instance['settings']['summary_max_words'] : '0',
+      '#description' => t('Enter the maximum number of words for the summary, leave blank or enter 0 for unlimited.'),
+    );
+  }
+}
+
+function text_summary_field_widget_form_alter(&$element, &$form_state, &$context) {
+  if (!isset($element['summary']) || (isset($form_state['input']['form_id']) && $form_state['input']['form_id'] == 'field_ui_field_edit_form')) {
+    return;
+  }
+  if (isset($context['instance']['settings']['summary_is_required']) && $context['instance']['settings']['summary_is_required']) {
+    $element['summary']['#required'] = TRUE;
+    $element['summary']['#description'] = t("You must provide a summary value.");
+  }
+  if (isset($context['instance']['settings']['summary_always_visible']) && $context['instance']['settings']['summary_always_visible']) {
+    if (($key = array_search('text-summary', $element['summary']['#attributes']['class'])) !== false) {
+      unset($element['summary']['#attributes']['class'][$key]);
+    }
+  }
+  if (isset($context['instance']['settings']['summary_max_words']) && $context['instance']['settings']['summary_max_words']) {
+    //$element['summary']['#element_validate'][] = 'text_summary_max_words_validate';
+    $element['summary']['#element_validate'][] = 'text_summary_max_length_validate';
+    $element['summary']['#max_words'] = $context['instance']['settings']['summary_max_words'];
+    $element['summary']['#description'] .= ' Maximum '. $context['instance']['settings']['summary_max_words'] .' words.';
+  }
+}
+
+/*function text_summary_max_words_validate(&$element, $form, $form_state) {
+  $num_words = str_word_count(strip_tags($element['#value']));
+  
+  if ($num_words > $element['#max_words']) {
+    $over = $num_words - $element['#max_words'];
+    form_error($element, $element['#title'] .' field has a maximum of '. $element['#max_words'] .' words, please remove at least '. $over. ' words.');
+  }
+}*/
+
+function text_summary_max_length_validate(&$element, $form, $form_state) {
+  $summary_length = strlen(strip_tags($element['#value']));
+  
+  if ($summary_length > $element['#max_words']) {
+    $over = $summary_length - $element['#max_words'];
+    form_error($element, $element['#title'] .' field has a maximum of '. $element['#max_words'] .' characters, please remove at least '. $over. ' characters.');
+  }
+}
