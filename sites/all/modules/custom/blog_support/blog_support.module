@@ -63,7 +63,8 @@ function sort_menu_items($menu_name, $plid) {
 * Adds theme suggestions for the user view mode teaser
 */
 function blog_support_preprocess_user_profile(&$vars) {
-  if ($vars['elements']['#view_mode'] == 'full') {
+
+  if ($vars['elements']['#view_mode'] == 'author_list' || $vars['elements']['#view_mode'] == 'full' ) {
     $vars['theme_hook_suggestions'][] = 'user_profile__authorlist';
   }
 }
