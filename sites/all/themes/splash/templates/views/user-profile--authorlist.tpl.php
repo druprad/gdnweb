@@ -29,8 +29,15 @@ $gplus_link = $user_profile['field_google_plus_link']['#object']->field_google_p
     </div>
     <div class="field field-name-field-introduction field-type-text-long field-label-hidden">
       <div class="field-items">
-        <div class="field-item even"><?php
-        print truncate_utf8($user_profile['field_introduction']['#object']->field_introduction['und']['0']['value'], 350, TRUE, TRUE);
+        <div class="field-item even">
+        <?php
+        if($user_profile['field_display_name']['#view_mode'] == 'author_list') {
+          print truncate_utf8($user_profile['field_introduction']['#object']->field_introduction['und']['0']['value'], 180, FALSE, TRUE);
+        }
+        else {
+          print $user_profile['field_introduction']['#object']->field_introduction['und']['0']['value'];
+        }
+
         //echo $user_profile['field_introduction']['#object']->field_introduction['und']['0']['value']; ?></div>
       </div>
     </div>
