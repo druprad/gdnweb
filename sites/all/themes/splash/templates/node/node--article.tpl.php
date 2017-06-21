@@ -78,6 +78,8 @@
 *
 * @ingroup themeable
 */
+
+$authors = get_authors_name($node,'full');
 ?>
 <div id="node-<?php print $node->nid; ?>" class="post">
 
@@ -90,7 +92,7 @@
         <div class="meta">
              <ul>
                   <li><?php print date('d M y', $created);?></li>
-                  <li>Posted by <?php print $name;?></li>
+                  <li>Posted by <?php print $authors;?></li>
                   <li><?php print $blog_categories;?></li>
                   <li><?php print $comment_count;?> Comments</a></li>
              </ul>

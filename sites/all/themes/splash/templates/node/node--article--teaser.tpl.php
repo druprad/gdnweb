@@ -78,6 +78,9 @@
 *
 * @ingroup themeable
 */
+
+$authors = get_authors_name($node,'teaser');
+
 ?>
 <div id="node-<?php print $node->nid; ?>" class="post <?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <?php print render($title_prefix); ?>
@@ -85,12 +88,12 @@
    <!-- Begin media blog -->
       <?php print render($content['field_media']);?>
    <!-- End media blog -->
-  
+
   <section class="post-content">
     <div class="meta">
         <ul>
             <li><span class="date"><?php print date('d F Y', $created);?></span></li>
-            <li><span>Post by <?php print strip_tags($name);?></span></li>
+            <li><span>Post by <?php print strip_tags($authors);?></span></li>
             <li><span class="comments"><?php print $comment_count;?> Comments</span></li>
         </ul>
     </div>
@@ -101,4 +104,4 @@
     <a class="more" href="<?php print $node_url;?>"><?php print t('read more ›');?></a>
   </section>
   <div class="clearfix"></div>
- </div> 
+ </div>

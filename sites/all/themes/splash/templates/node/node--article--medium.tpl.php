@@ -78,6 +78,8 @@
 *
 * @ingroup themeable
 */
+
+$authors = get_authors_name($node,'teaser');
 ?>
 <div id="node-<?php print $node->nid; ?>" class="post <?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <?php print render($title_prefix); ?>
@@ -94,16 +96,16 @@
         <div class="meta">
             <ul>
                 <li><span class="date"><?php print date('d F Y', $created);?></span></li>
-                <li><span>Post by <?php print strip_tags($name);?></span></li>
+                <li><span>Post by <?php print strip_tags($authors);?></span></li>
                 <li><span class="comments"><?php print $comment_count;?> Comments</span></li>
             </ul>
-        </div>   
+        </div>
         <h2 class="post-title">
            <a href="<?php print $node_url;?>"><?php print $title;?></a>
         </h2>
         <p><?php print strip_tags(render($content['body']));?> [...]</p>
         <a class="more" href="<?php print $node_url;?>"><?php print t('read more ›');?></a>
        </div>
-    </div>  
-  </div> 
+    </div>
+  </div>
 </div>

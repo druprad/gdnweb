@@ -25,7 +25,7 @@ function splash_preprocess_node(&$variables) {
   }
 
   // Restricting home page's blog's title length : Starts
-  if($variables['view_mode'] == 'teaser'  
+  if($variables['view_mode'] == 'teaser'
   	 && $variables['type'] == 'article'
   	 && $variables['view']->name == 'blog'
   	 ) {
@@ -92,4 +92,44 @@ function splash_breadcrumb($variables) {
 function splash_form_search_block_form_alter(&$form) {
   $form['search_block_form']['#attributes']['placeholder'] = t('Start Typing...');
   $form['actions']['#attributes']['class'][] = 'element-invisible';
+}
+
+function get_authors_name($node,$view_mode){
+
+  if($view_mode == 'teaser')
+  {
+    $authors_count = count($node->field_authors['und']);
+    if($authors_count > '1') {
+      return 'Multiple';
+    }
+    else
+    {
+       $user_id = $node->field_authors['und']['0']['target_id'];
+       $user_obj = user_load($user_id);
+       $authors = $user_obj->field_display_name['und']['0']['value'];
+       return $authors;
+    }
+  }
+  elseif ($view_mode == 'full' || $view_mode == 'default')
+  {
+    $authors_count = count($node->field_authors['und']);
+    $authors_arr = $node->field_authors['und'];
+    $authors = '';
+    if($authors_count > '1') {
+      foreach ($authors_arr as $author => $value) {
+        $user_id = $value['target_id'];
+        $user_obj = user_load($user_id);
+        $authors .= $user_obj->field_display_name['und']['0']['value'].',';
+      }
+      $authors = substr($authors, 0, -1);
+      return $authors;
+    }
+    else
+    {
+       $user_id = $node->field_authors['und']['0']['target_id'];
+       $user_obj = user_load($user_id);
+       $authors = $user_obj->field_display_name['und']['0']['value'];
+       return $authors;
+    }
+  }
 }
