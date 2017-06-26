@@ -120,7 +120,7 @@ function get_authors_name($node,$view_mode){
         $user_obj = user_load($user_id);
         $authors .= $user_obj->field_display_name['und']['0']['value'].' , ';
       }
-      $authors = substr($authors, 0, -1);
+      $authors = substr($authors, 0, -2);
       return $authors;
     }
     else
