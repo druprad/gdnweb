@@ -80,32 +80,28 @@
 */
 
 $authors = get_authors_name($node,'teaser');
+
 ?>
 <div id="node-<?php print $node->nid; ?>" class="post <?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <?php print render($title_prefix); ?>
   <?php print render($title_suffix); ?>
-  <div class="row">
    <!-- Begin media blog -->
-   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-       <?php print render($content['field_media']);?>
-   </div>
-  <!-- End media blog -->
+      <?php print render($content['field_media']);?>
+   <!-- End media blog -->
 
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-      <div class="image-caption">
-        <div class="meta">
-            <ul>
-                <li><span class="date"><?php print date('d F Y', $created);?></span></li>
-                <li><span>Post by <?php print strip_tags($authors);?></span></li>
-                <li><span class="comments"><?php print $comment_count;?> Comments</span></li>
-            </ul>
-        </div>
-        <h2 class="post-title">
-           <a href="<?php print $node_url;?>"><?php print $title;?></a>
-        </h2>
-        <p><?php print strip_tags(render($content['body']));?> [...]</p>
-        <a class="more" href="<?php print $node_url;?>"><?php print t('read more ›');?></a>
-       </div>
+  <section class="post-content">
+    <div class="meta">
+        <ul>
+            <li><span class="date"><?php print date('d M Y', $created);?></span></li>
+            <li><span>By: <?php print strip_tags($authors);?></span></li>
+            <li><span class="comments"><?php print $comment_count;?> Comments</span></li>
+        </ul>
     </div>
-  </div>
-</div>
+    <h6 class="post-title">
+       <a href="<?php print $node_url;?>"><?php print $title;?></a>
+    </h6>
+    <p><?php print strip_tags(render($content['body']));?></p>
+    <a class="more" href="<?php print $node_url;?>"><?php print t('read more ›');?></a>
+  </section>
+  <div class="clearfix"></div>
+ </div>
