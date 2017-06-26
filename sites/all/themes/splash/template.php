@@ -25,7 +25,7 @@ function splash_preprocess_node(&$variables) {
   }
 
   // Restricting home page's blog's title length : Starts
-  if($variables['view_mode'] == 'teaser'
+  if(($variables['view_mode'] == 'teaser' || $variables['view_mode'] == 'medium' )
   	 && $variables['type'] == 'article'
   	 && $variables['view']->name == 'blog'
   	 ) {
@@ -95,8 +95,7 @@ function splash_form_search_block_form_alter(&$form) {
 }
 
 function get_authors_name($node,$view_mode){
-
-  if($view_mode == 'teaser')
+  if($view_mode == 'teaser' || $view_mode == 'medium')
   {
     $authors_count = count($node->field_authors['und']);
     if($authors_count > '1') {
@@ -119,7 +118,7 @@ function get_authors_name($node,$view_mode){
       foreach ($authors_arr as $author => $value) {
         $user_id = $value['target_id'];
         $user_obj = user_load($user_id);
-        $authors .= $user_obj->field_display_name['und']['0']['value'].',';
+        $authors .= $user_obj->field_display_name['und']['0']['value'].' , ';
       }
       $authors = substr($authors, 0, -1);
       return $authors;
